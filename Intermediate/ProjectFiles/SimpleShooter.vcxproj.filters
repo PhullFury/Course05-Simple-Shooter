@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\SimpleShooter.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{6B362D37-80D1-47B7-8017-A7A5D28171A9}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\SimpleShooter.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\SimpleShooterEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{75770AE9-D4A4-401A-AFF1-ECA7A62DC8E1}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\SimpleShooter">
+      <UniqueIdentifier>{FA205F44-CADF-4C24-976A-6C936910A8A2}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\SimpleShooter\SimpleShooter.Build.cs">
+      <Filter>Source\SimpleShooter</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\SimpleShooter\SimpleShooter.cpp">
+      <Filter>Source\SimpleShooter</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SimpleShooter\SimpleShooter.h">
+      <Filter>Source\SimpleShooter</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SimpleShooter\SimpleShooterGameModeBase.cpp">
+      <Filter>Source\SimpleShooter</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SimpleShooter\SimpleShooterGameModeBase.h">
+      <Filter>Source\SimpleShooter</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

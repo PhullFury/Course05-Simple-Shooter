@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"F:\\Unreal Projects\\Udemy Courses\\SimpleShooter\\Source\\SimpleShooter\\SimpleShooter.Build.cs",
+		"F:\\Unreal Projects\\Udemy Courses\\SimpleShooter\\Source\\SimpleShooter.Target.cs",
+		"F:\\Unreal Projects\\Udemy Courses\\SimpleShooter\\Source\\SimpleShooterEditor.Target.cs"
+	],
+	"EngineVersion": "4.25.3"
+}
