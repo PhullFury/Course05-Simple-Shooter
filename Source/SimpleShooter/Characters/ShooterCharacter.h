@@ -30,4 +30,9 @@ protected:
 private:
 	void MoveForward(float AxisValue);
 	void MoveSideways(float AxisValue);
+	void LookUpRate(float AxisValue);
+	void LookSidewaysRate(float AxisValue);
+
+	UPROPERTY(EditAnywhere, Category = "Movement")
+		float RotationRate = 10;
 };
