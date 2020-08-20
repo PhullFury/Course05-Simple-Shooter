@@ -2,7 +2,12 @@
 
 
 #include "Components/SkeletalMeshComponent.h"
+#include "DrawDebugHelpers.h"
+#include "Engine/World.h"
+#include "Kismet/GameplayStatics.h"
 #include "Gun.h"
+
+#define OUT
 
 // Sets default values
 AGun::AGun()
@@ -29,4 +34,39 @@ void AGun::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void AGun::PullTrigger()
+{
+	UGameplayStatics::SpawnEmitterAttached(MuzzleFlash, Mesh, TEXT("MuzzleFlashSocket"));
+	LineTrace();
+}
+
+void AGun::LineTrace()
+{
+	APawn* OwnerPawn = Cast<APawn>(GetOwner());
+	if (OwnerPawn == nullptr) return;
+	AController* OwnerController = OwnerPawn->GetController();
+	if (OwnerController == nullptr) return;
+
+	FVector OwnerLocation;
+	FRotator OwnerRotation;
+	OwnerController->GetPlayerViewPoint(OUT OwnerLocation, OUT OwnerRotation);
+	FVector LineEnd = OwnerLocation + OwnerRotation.Vector() * MaxRange;
+	FHitResult HitResult;
+
+	bool bHitSucces = GetWorld()->LineTraceSingleByChannel(OUT HitResult, OwnerLocation, LineEnd, ECollisionChannel::ECC_GameTraceChannel1);
+
+	if (bHitSucces)
+	{
+		FVector ShotDirection = -OwnerRotation.Vector();
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactEffect, HitResult.Location, ShotDirection.Rotation(), true);
+
+		AActor* HitActor = HitResult.GetActor();
+		if (HitActor != nullptr)
+		{
+			FPointDamageEvent DamageEvent(Damage, HitResult, ShotDirection, nullptr);
+			HitActor->TakeDamage(Damage, DamageEvent, OwnerController, this);
+		}
+	}
 }

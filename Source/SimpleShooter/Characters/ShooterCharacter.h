@@ -16,12 +16,12 @@ class SIMPLESHOOTER_API AShooterCharacter : public ACharacter
 public:
 	// Sets default values for this character's properties
 	AShooterCharacter();
-
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 
 
 protected:
@@ -36,14 +36,19 @@ private:
 	void LookSidewaysRate(float AxisValue);
 	void Sprint();
 	void StopSprint();
+	void PullTrigger();
 
+
+	UPROPERTY()
+		AGun* Gun;
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float RotationRate = 10;
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float SprintModifier = 1.75;
-	UPROPERTY(EditDefaultsOnly)
+	UPROPERTY(EditDefaultsOnly, Category = "Weapons")
 		TSubclassOf<AGun> GunClass;
-	UPROPERTY()
-		AGun* Gun;
-
+	UPROPERTY(EditDefaultsOnly, Category = "Health")
+		float MaxHealth = 100;
+	UPROPERTY(VisibleAnywhere, Category = "Health")
+		float Health;
 };

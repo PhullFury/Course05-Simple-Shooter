@@ -18,6 +18,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	void PullTrigger();
+
 
 protected:
 	// Called when the game starts or when spawned
@@ -29,4 +31,15 @@ private:
 		USceneComponent* Root;
 	UPROPERTY(VisibleAnywhere)
 		USkeletalMeshComponent* Mesh;
+
+	UPROPERTY(EditAnywhere, Category = "Effects")
+		UParticleSystem* MuzzleFlash;
+	UPROPERTY(EditAnywhere, Category = "Effects")
+		UParticleSystem* ImpactEffect;
+	UPROPERTY(EditAnywhere, Category = "Combat")
+		float MaxRange = 1000;
+	UPROPERTY(EditAnywhere, Category = "Combat")
+		float Damage = 10;
+
+	void LineTrace();
 };
