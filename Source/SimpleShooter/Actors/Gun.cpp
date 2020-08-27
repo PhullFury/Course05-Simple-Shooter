@@ -54,8 +54,11 @@ void AGun::LineTrace()
 	OwnerController->GetPlayerViewPoint(OUT OwnerLocation, OUT OwnerRotation);
 	FVector LineEnd = OwnerLocation + OwnerRotation.Vector() * MaxRange;
 	FHitResult HitResult;
+	FCollisionQueryParams Params;
+	Params.AddIgnoredActor(this);
+	Params.AddIgnoredActor(OwnerPawn);
 
-	bool bHitSucces = GetWorld()->LineTraceSingleByChannel(OUT HitResult, OwnerLocation, LineEnd, ECollisionChannel::ECC_GameTraceChannel1);
+	bool bHitSucces = GetWorld()->LineTraceSingleByChannel(OUT HitResult, OwnerLocation, LineEnd, ECollisionChannel::ECC_GameTraceChannel1, Params);
 
 	if (bHitSucces)
 	{
