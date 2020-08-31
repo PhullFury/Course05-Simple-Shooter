@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
+#include "Blueprint/UserWidget.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "SimpleShooter/Actors/Gun.h"
@@ -97,13 +98,13 @@ float AShooterCharacter::TakeDamage(float DamageAmount, struct FDamageEvent cons
 
 	if (IsDead())
 	{
-		DetachFromControllerPendingDestroy();
-		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		ASimpleShooterGameModeBase* GameMode = GetWorld()->GetAuthGameMode<ASimpleShooterGameModeBase>();
 		if (GameMode != nullptr)
 		{
 			GameMode->PawnKilled(this);
 		}
+		DetachFromControllerPendingDestroy();
+		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	}
 
 	return DamageAmount;
@@ -119,4 +120,9 @@ bool AShooterCharacter::IsDead() const
 	{
 		return false;
 	}
+}
+
+float AShooterCharacter::GetCurrentHealth() const
+{
+	return Health/MaxHealth;
 }

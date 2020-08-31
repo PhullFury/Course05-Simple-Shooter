@@ -34,12 +34,17 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Effects")
 		UParticleSystem* MuzzleFlash;
+	UPROPERTY(EditAnywhere, Category = "Sound")
+		USoundBase* MuzzleSound;
 	UPROPERTY(EditAnywhere, Category = "Effects")
 		UParticleSystem* ImpactEffect;
+	UPROPERTY(EditAnywhere, Category = "Sound")
+		USoundBase* ImpactSound;
 	UPROPERTY(EditAnywhere, Category = "Combat")
 		float MaxRange = 1000;
 	UPROPERTY(EditAnywhere, Category = "Combat")
 		float Damage = 10;
 
 	void LineTrace();
+	bool GunTrace(FHitResult &Hit, FVector &ShotDirection);
 };
